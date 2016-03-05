@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from opendataday.models import CongressMan, Restaurant, CongressRestaurantMap
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 # Create your views here.
 
 def get_data(request):
@@ -9,4 +9,43 @@ def get_data(request):
         maps = CongressRestaurantMap.members.all()
     except:
         pass
-    return JsonResponse(result)
+    str = """
+    data: [
+    {
+        restaurant_name: "식당이름",
+        latitude: 1.1,
+        longitude: 1.1,
+        category: "한식",
+        visitied: [{
+            party: "정당",
+            congressman_name: "의원이름",
+            local: "지역구",
+            price: "사용금액",
+        }, {
+            party: "정당",
+            congressman_name: "의원이름",
+            local: "지역구",
+            price: "사용금액",
+        }],
+    },
+    {
+        restaurant_name: "식당이름",
+        latitude: 1.1,
+        longitude: 1.1,
+        category: "한식",
+        visitied: [{
+            party: "정당",
+            congressman_name: "의원이름",
+            local: "지역구",
+            price: "사용금액",
+        }, {
+            party: "정당",
+            congressman_name: "의원이름",
+            local: "지역구",
+            price: "사용금액",
+        }]
+    }
+]
+"""
+    return HttpResponse(str)
+    # return JsonResponse(result)
