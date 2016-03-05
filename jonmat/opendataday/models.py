@@ -34,3 +34,4 @@ class Restaurant(models.Model):
 class CongressRestaurantMap(models.Model):
     congress = models.ForeignKey(CongressMan)
     restaurant = models.ForeignKey(Restaurant)
+    price = models.IntegerField()
